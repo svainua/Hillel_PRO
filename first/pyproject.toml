@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "first"
+version = "0.1.0"
+description = ""
+authors = ["Volodymyr Saratovskyy <sva.in.ua@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 79
+target-version = ['py312']
+
+[tool.isort]
+profile = "black"
+
+[tool.ruff]
+ignore = []
+exclude = ["venv/"]
