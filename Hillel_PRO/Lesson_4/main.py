@@ -1,4 +1,4 @@
-def foo(name, middle_name, last_name):
+def foo(name: str, middle_name: str, last_name: str):
     pass
 
 
