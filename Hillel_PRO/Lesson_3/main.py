@@ -4,3 +4,7 @@ def foo(name: str, middle_name: str, last_name: str):
 
 def baz():
     pass
+
+
+def new_baz():
+    pass
