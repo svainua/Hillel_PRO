@@ -1,9 +1,6 @@
-def foo(name, middle_name, last_name):
+def foo(name: str, middle_name: str, last_name: str):
     pass
 
 
-def baz(num: int) -> str:
+def baz():
     pass
-
-
-print("Hello1")
