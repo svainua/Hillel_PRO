@@ -2,8 +2,5 @@ def foo(name, middle_name, last_name):
     pass
 
 
-def baz(num: int) -> str:
+def baz():
     pass
-
-
-print("Hello1")
