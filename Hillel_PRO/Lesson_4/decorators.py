@@ -3,7 +3,6 @@ def deco(func):
         print("running inner() ")
         func()
 
-
     return inner
 
 
