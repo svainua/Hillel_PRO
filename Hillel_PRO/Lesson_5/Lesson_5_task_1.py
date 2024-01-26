@@ -4,22 +4,14 @@
 # additional
 
 
-
 word_to_find = input("Please enter the word you want to find in the file: \n")
 line_tracker = 0
 
-with open("Hillel_PRO/Lesson_5/test.txt") as file:
+with open("rockyou.txt", encoding="latin-1") as file:
     line_list = [item.replace("\n", "").split() for item in file.readlines()]
-    print(line_list)
 
     for check in line_list:
         if word_to_find in check:
             line_tracker += 1
 
 print(f"The word '{word_to_find}' was found in {line_tracker} lines")
-
-
-
-
-
-
