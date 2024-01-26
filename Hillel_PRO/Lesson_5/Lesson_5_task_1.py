@@ -1,7 +1,8 @@
 # Create an application that allows you to input the string
-# Then, the application goes through the whole file and checks if the requested string exists in each line
-# Then, it shows to user how many lines have been found during the search process
-# additional
+# Then, the application goes through the whole file and checks
+# if the requested string exists in each line.
+# Then, it shows to user how many lines have been found during the
+# search process
 
 
 word_to_find = input("Please enter the word you want to find in the file: \n")
