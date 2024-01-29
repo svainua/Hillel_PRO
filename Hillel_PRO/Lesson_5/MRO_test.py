@@ -16,49 +16,50 @@
 
 # print(D.mro())
 
+###################################
 
-class O:
-    pass
-
-
-class A(O):
-    pass
+# class O:
+#     pass
 
 
-class B(O):
-    pass
+# class A(O):
+#     pass
 
 
-class C(O):
-    pass
+# class B(O):
+#     pass
 
 
-class D(O):
-    pass
+# class C(O):
+#     pass
 
 
-class E(O):
-    pass
+# class D(O):
+#     pass
 
 
-class K1(A, B, C):
-    pass
+# class E(O):
+#     pass
 
 
-class K2(B, D):
-    pass
+# class K1(A, B, C):
+#     pass
 
 
-class K3(C, D, E):
-    pass
+# class K2(B, D):
+#     pass
 
 
-class Z(K1, K2, K3):
-    pass
+# class K3(C, D, E):
+#     pass
 
 
-def print_mro(class_name):
-    print(*[item.__name__ for item in class_name.mro()], sep=" --> ")
+# class Z(K1, K2, K3):
+#     pass
 
 
-print_mro(Z)
+# def print_mro(class_name):
+#     print(*[item.__name__ for item in class_name.mro()], sep=" --> ")
+
+
+# print_mro(Z)
