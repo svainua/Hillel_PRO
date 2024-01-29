@@ -63,3 +63,5 @@
 
 
 # print_mro(Z)
+
+print("hello")
