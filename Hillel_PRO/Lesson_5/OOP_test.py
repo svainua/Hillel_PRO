@@ -26,9 +26,6 @@ class Item:
     def __repr__(self):
         return f"Item('{self.name}', {self.price}, {self.quantity})"
 
-   
-
-
 
 item_1 = Item("Phone", 100, 1)
 item_2 = Item("Laptop", 1000, 3)
@@ -50,5 +47,5 @@ item_5 = Item("Keyboard", 75, 5)
 
 print(Item.all)
 
-for instance in Item.all:
-    print(instance.name)
+# for instance in Item.all:
+#     print(instance.name)
