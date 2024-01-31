@@ -1,3 +1,6 @@
+from typing import Generator
+
+
 class Player:
     def __init__(self, first_name: str, last_name: str):
         self.first_name: str = first_name
@@ -30,9 +33,15 @@ for player in team:
 
 def dedup(collection) -> Generator[str, None, None]:
     # TODO: Complete this function
-    raise NotImplementedError
+    unique_name = []
+    for player in collection:
+        if player.first_name not in unique_name:
+            unique_name.append(player.first_name)
+            yield player
 
+    #raise NotImplementedError
 
+print()
 for player in dedup(team):
     print(player)
 
