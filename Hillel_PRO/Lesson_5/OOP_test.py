@@ -23,6 +23,12 @@ class Item:
     def apply_discount(self):
         return self.price * self.pay_rate
 
+    def __repr__(self):
+        return f"Item('{self.name}', {self.price}, {self.quantity})"
+
+   
+
+
 
 item_1 = Item("Phone", 100, 1)
 item_2 = Item("Laptop", 1000, 3)

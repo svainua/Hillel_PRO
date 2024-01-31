@@ -8,3 +8,4 @@ def baz():
 
 def new_baz():
     pass
+
