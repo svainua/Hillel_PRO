@@ -39,7 +39,8 @@ def dedup(collection) -> Generator[str, None, None]:
             unique_name.append(player.first_name)
             yield player
 
-    #raise NotImplementedError
+    # raise NotImplementedError
+
 
 print()
 for player in dedup(team):
@@ -52,5 +53,6 @@ for player in dedup(team):
 # Nick Doe
 
 # Explaination:
-# The dedup function should return a generator that yields the unique players in the team.
+# The dedup function should return a generator
+     #that yields the unique players in the team.
 # The uniqueness of a player is determined by its first name only
