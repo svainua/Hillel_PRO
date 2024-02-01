@@ -13,12 +13,17 @@ class Item:
         ), f"Quantity {quantity} is not greater or equal to zero!"
 
         # Assign to self object
-        self.name = name
+        self.__name = name
         self.price = price
         self.quantity = quantity
 
         # Actions to execute
         Item.all.append(self)
+
+    @property
+    # Property decorator : Read file only
+    def name(self):
+        return self.__name    
 
     def calculate_total_price(self):
         return self.price * self.quantity
@@ -49,11 +54,13 @@ class Item:
         elif isinstance(num, int):
             return True
         else:
-            return False
+            return False    
 
     def __repr__(self):
         return f"{self.__class__.__name__}"
         f"('{self.name}', {self.price}, {self.quantity})"
+
+
 
 
 # Item.instanciate_from_csv()
@@ -78,3 +85,5 @@ class Item:
 
 # for instance in Item.all:
 #     print(instance.name)
+        
+        
