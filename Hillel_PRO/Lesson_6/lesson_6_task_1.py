@@ -54,5 +54,5 @@ for player in dedup(team):
 
 # Explaination:
 # The dedup function should return a generator
-     #that yields the unique players in the team.
+# that yields the unique players in the team.
 # The uniqueness of a player is determined by its first name only
