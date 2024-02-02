@@ -47,5 +47,5 @@ def main():
             player_delete()
 
 
-if __main__ == "__main__":
-    main()
+# if __main__ == "__main__":
+#     main()
