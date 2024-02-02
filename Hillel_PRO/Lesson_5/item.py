@@ -14,22 +14,36 @@ class Item:
 
         # Assign to self object
         self.__name = name
-        self.price = price
+        self.__price = price
         self.quantity = quantity
 
         # Actions to execute
         Item.all.append(self)
 
     @property
-    # Property decorator : Read file only
+    def price(self):
+        return self.__price
+    
+    def apply_discount(self):
+        self.__price = self.__price * self.pay_rate
+
+    def apply_increment(self, increment_value):
+        self.__price = self.__price + self.__price * increment_value    
+
+
+    @property
+    # Property decorator : Read file only. Protects from changes
     def name(self):
-        return self.__name    
+        return self.__name   
+
+    @name.setter
+    # Allows to change
+    def name(self, value):
+        self.__name = value 
 
     def calculate_total_price(self):
-        return self.price * self.quantity
+        return self.__price * self.quantity
 
-    def apply_discount(self):
-        return self.price * self.pay_rate
 
     @classmethod
     def instanciate_from_csv(cls):
@@ -58,7 +72,7 @@ class Item:
 
     def __repr__(self):
         return f"{self.__class__.__name__}"
-        f"('{self.name}', {self.price}, {self.quantity})"
+        f"('{self.name}', {self.__price}, {self.quantity})"
 
 
 
