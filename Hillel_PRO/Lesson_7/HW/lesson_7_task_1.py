@@ -7,8 +7,11 @@ team: list[dict] = [
 
 
 # Application source code
-def repr_players(players: list[dict]):
-    pass
+def repr_players(players):
+    for player in players:
+        print(
+            f"[Player {player['number']}]: {player['name']}, {player['age']}"
+        )
 
 
 def player_add(name: str, age: int, number: int) -> dict:
@@ -43,9 +46,10 @@ def main():
             except ValueError:
                 print("Age and player's number must be integers\n\n")
                 continue
-        elif operation == "del":
-            player_delete()
+        # elif operation == "del":
+        #     player_delete()
+        else:
+            raise NotImplementedError
 
 
-# if __main__ == "__main__":
-#     main()
+main()
