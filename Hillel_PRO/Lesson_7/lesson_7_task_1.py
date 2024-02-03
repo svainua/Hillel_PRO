@@ -63,18 +63,29 @@ def main():
                 print("Age and player's number must be integers\n\n")
                 continue
         elif operation == "upd":
-            number_to_update = input(
-                "Enter the player's number whose data you want to update: "
+            number_to_update = int(
+                input(
+                    "Enter the player's number whose data you want to update: "
+                )
             )
-            name_and_age_to_update = input(
-                "Enter new player information [name, age] :"
-            ).split(",")
-            new_name, new_age = name_and_age_to_update
-            try:
-                player_update(new_name, int(new_age), int(number_to_update))
-            except ValueError:
-                print("Age and player's number must be integers\n\n")
+            number_list = [item["number"] for item in team]
+            if number_to_update in number_list:
+                name_and_age_to_update = input(
+                    "Enter new player information [name, age] :"
+                ).split(",")
+                new_name, new_age = name_and_age_to_update
+                try:
+                    player_update(new_name, int(new_age), number_to_update)
+                except ValueError:
+                    print("Age and player's number must be integers\n\n")
+                    continue
+            else:
+                print(
+                    "There is no such player's number in a list."
+                    " Use 'add' function or choose another player's number"
+                )
                 continue
+
         else:
             raise NotImplementedError
 
