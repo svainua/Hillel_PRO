@@ -28,7 +28,8 @@ def player_add(name: str, age: int, number: int) -> dict:
 def player_delete(number: int) -> None:
     for player in team:
         if player["number"] == number:
-            del player
+            index = team.index(player)
+            team.pop(index)
 
 
 def player_update(name: str, age: int, number: int) -> dict:
@@ -85,7 +86,9 @@ def main():
                     " Use 'add' function or choose another player's number"
                 )
                 continue
-
+        elif operation == "del":
+            number_to_delete = int(input("Which number you want to delete?: "))
+            player_delete(number_to_delete)
         else:
             raise NotImplementedError
 

@@ -21,7 +21,12 @@ team: list[dict] = [
 #     if check["number"] == int(number):
 #         print("occupied")
 
+to_delete = "Mark"
 
-number_list = [item["number"] for item in team]
+for player in team:
+    if player["name"] == to_delete:
+        index = team.index(player)
+        team.pop(index)
+        print(index)
 
-print(number_list)
+print(team)
