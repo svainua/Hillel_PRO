@@ -27,7 +27,7 @@ def get(id_) -> dict:
 
 
 def update(id_: int, instance: dict, debug: bool = False) -> dict:
-    player: dict = get(id_=id_)  # only to test if the element exists
+    player: dict = get(id_=id_)  # noqa: F841
     _TEAM[id_] = instance
     return instance
 
@@ -42,5 +42,5 @@ def save(id_: int, instance: dict) -> dict:
 
 
 def delete(id_: int, debug: bool = False):
-    player: dict = get(id_=id_)  # only to test if the element exists
+    player: dict = get(id_=id_)  # noqa: F841
     del _TEAM[id_]
