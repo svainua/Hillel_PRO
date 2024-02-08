@@ -9,7 +9,7 @@ class DatabaseError(Exception):
 _TEAM: TEAM_TYPE = {
     1: {"name": "John", "age": 20},
     3: {"name": "Mark", "age": 33},
-    12: {"name": "Kavin", "age": 31},
+    12: {"name": "Mike", "age": 31},
 }
 
 
