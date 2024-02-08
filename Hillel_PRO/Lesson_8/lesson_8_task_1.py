@@ -12,7 +12,7 @@ def player_add(name: str, age: int, number: int) -> dict | None:
     player: dict = {"name": name, "age": age}
     saved: bool = database.save(id_=number, instance=player)
     if not saved:
-        print(f"Player with number {number} already exists")
+        raise Exception(f"Player with number {number} already exists")
     else:
         return player
 
@@ -38,68 +38,71 @@ def player_update(name: str, age: int, number: int) -> dict | None:
         return None
 
 
-def main():
+def commands_dispatcher(operation: str):
     operations = ("add", "upd", "repr", "del", "exit")
+
+    if operation not in operations:
+        raise Exception(f"Operation: {operation} is not available\n")
+
+    if operation == "exit":
+        raise SystemExit("Bye! Exiting the application")
+
+    elif operation == "repr":
+        repr_players()
+
+    elif operation == "add":
+        user_data = input(
+            "Enter new player information [name, age, number]: "
+        ).split(",")
+        name, age, number = user_data
+
+        try:
+            player_add(name=name, age=int(age), number=int(number))
+        except ValueError:
+            raise Exception("Age and player's number must be integers\n\n")
+
+    elif operation == "upd":
+        user_data = input(
+            "Enter a new player's information [name, age, number]: "
+        ).split(",")
+        name, age, number = user_data
+
+        try:
+            new_player = player_update(
+                name=name, age=int(age), number=int(number)
+            )
+        except ValueError:
+            raise Exception("Age and player's number must be integers\n\n")
+        else:
+            if new_player is None:
+                print("Player is not updated")
+            else:
+                print(
+                    f"Player {number} is updated. "
+                    f"Name: {new_player['name']}, "
+                    f"Age: {new_player['age']}"
+                )
+
+    elif operation == "del":
+        user_data = input("Which number you want to delete?: ")
+        try:
+            _user_data = int(user_data)
+        except ValueError:
+            raise Exception("Age and player's number must be integers\n\n")
+        else:
+            player_delete(number=_user_data)
+
+
+def main():
     while True:
         operation = input("Please enter the operation: ")
-        if operation not in operations:
-            print(f"Operation: {operation} is not available\n")
+        try:
+            commands_dispatcher(operation=operation)
+        except SystemExit as error:
+            raise error
+        except Exception as error:
+            print(error)
             continue
-
-        if operation == "exit":
-            print("Bye")
-            break
-
-        elif operation == "repr":
-            repr_players()
-
-        elif operation == "add":
-            user_data = input(
-                "Enter new player information [name, age, number]: "
-            ).split(",")
-            name, age, number = user_data
-
-            try:
-                player_add(name=name, age=int(age), number=int(number))
-            except ValueError:
-                print("Age and player's number must be integers\n\n")
-                continue
-
-        elif operation == "upd":
-            user_data = input(
-                "Enter a new player's information [name, age, number]: "
-            ).split(",")
-            name, age, number = user_data
-
-            try:
-                new_player = player_update(
-                    name=name, age=int(age), number=int(number)
-                )
-            except ValueError:
-                print("Age and player's number must be integers\n\n")
-                continue
-            else:
-                if new_player is None:
-                    print("Player is not updated")
-                else:
-                    print(
-                        f"Player {number} is updated. "
-                        f"Name: {new_player['name']}, "
-                        f"Age: {new_player['age']}"
-                    )
-
-        elif operation == "del":
-            user_data = input("Which number you want to delete?: ")
-            try:
-                _user_data = int(user_data)
-            except ValueError:
-                print("Age and player's number must be integers\n\n")
-                continue
-            else:
-                player_delete(number=_user_data)
-
-        else:
-            raise NotImplementedError
 
 
 main()
