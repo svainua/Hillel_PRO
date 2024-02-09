@@ -49,6 +49,9 @@ class Point:
     def __add__(self, other) -> "Point":
         return Point(x=self.x + other.x, y=self.y + other.y)
 
+    def __sub__(self, other) -> "Point":
+        return Point(x=self.x - other.x, y=self.y - other.y)
+
 
 class Vector:
     def __init__(self, start: Point, end: Point):
@@ -60,6 +63,9 @@ class Vector:
 
     def __add__(self, other):
         return Vector(start=self.start + other.start, end=self.end + other.end)
+
+    def __sub__(self, other):
+        return Vector(start=self.start - other.start, end=self.end - other.end)
 
 
 a = Vector(start=Point(x=1, y=1), end=Point(x=3, y=4))
