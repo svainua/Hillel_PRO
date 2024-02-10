@@ -67,8 +67,13 @@ class Vector:
     def __sub__(self, other):
         return Vector(start=self.start - other.start, end=self.end - other.end)
 
+    def __getattr__(self, attr: str):
+        return lambda: print(f"Attribute {attr} doesn't exist")
+
 
 a = Vector(start=Point(x=1, y=1), end=Point(x=3, y=4))
 b = Vector(start=Point(x=4, y=1), end=Point(x=6, y=2))
-c = a + b
-print(c)
+vector: Vector = a + b
+print(vector)
+
+vector.something()
