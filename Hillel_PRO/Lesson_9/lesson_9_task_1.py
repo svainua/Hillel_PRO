@@ -52,7 +52,7 @@ def main():
         try:
             value_1, currency_1 = (
                 input(
-                    "What's the price and the currency of"
+                    "What's the price and the currency of "
                     "the 1st product? [price currency]: "
                 )
                 .upper()
@@ -60,7 +60,7 @@ def main():
             )
             value_2, currency_2 = (
                 input(
-                    "What's the price and the currency of"
+                    "What's the price and the currency of "
                     "the 2nd product? [price currency]: "
                 )
                 .upper()
