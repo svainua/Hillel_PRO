@@ -46,16 +46,55 @@ class Price:
             )
 
 
-value_1, currency_1 = input(
-    "What's the price and the currency of the 1st product? [price currency]: "
-).split(" ")
-value_2, currency_2 = input(
-    "What's the price and the currency of the 2nd product? [price currency]: "
-).split(" ")
+def main():
+    should_continue = True
+    while should_continue:
+        try:
+            value_1, currency_1 = (
+                input(
+                    "What's the price and the currency of"
+                    "the 1st product? [price currency]: "
+                )
+                .upper()
+                .split(" ")
+            )
+            value_2, currency_2 = (
+                input(
+                    "What's the price and the currency of"
+                    "the 2nd product? [price currency]: "
+                )
+                .upper()
+                .split(" ")
+            )
+        except ValueError:
+            print("Please use the advised format")
+            continue
+        else:
+            try:
+                product_1_value = int(value_1)
+                product_2_value = int(value_2)
+            except ValueError:
+                print("Use integers for the price")
+                continue
+            else:
+                if (
+                    currency_1 in currency_exchange
+                    and currency_2 in currency_exchange
+                ):
+                    product_1: Price = Price(
+                        value=int(product_1_value), currency=currency_1
+                    )
+                    product_2: Price = Price(
+                        value=int(product_2_value), currency=currency_2
+                    )
 
-product_1: Price = Price(value=int(value_1), currency=currency_1)
-product_2: Price = Price(value=int(value_2), currency=currency_2)
+                    total: Price = product_1 + product_2
 
-total: Price = product_1 + product_2
+                    print(f"You should pay {total}")
+                    break
+                else:
+                    print("This currency is not supported")
+                    main()
 
-print(f"You should pay {total}")
+
+main()
