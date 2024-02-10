@@ -91,7 +91,7 @@ def main():
                     total: Price = product_1 + product_2
 
                     print(f"You should pay {total}")
-                    break
+                    should_continue = False
                 else:
                     print("This currency is not supported")
                     main()
