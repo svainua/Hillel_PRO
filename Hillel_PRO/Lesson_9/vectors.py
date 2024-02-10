@@ -77,3 +77,16 @@ vector: Vector = a + b
 print(vector)
 
 vector.something()
+
+
+# ============================
+
+# class Product:
+#     def __init__(self, name: str, price: Price):
+#         self.name = name
+#         self.price = price
+
+
+# class PaymentProcessor:  # класс проводит оплату
+#     def checkout(self, product: Product, price: Price):  # сделать оплату
+#         pass
