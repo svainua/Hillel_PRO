@@ -7,10 +7,6 @@ currency_exchange: dict = {
 }
 
 
-class DatabaseError(Exception):
-    pass
-
-
 class Price:
     def __init__(self, value: int, currency: str) -> None:
         self.value: int = value
