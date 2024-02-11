@@ -1,3 +1,5 @@
+
+
 # class A:
 #     def __init__(self):
 #         self.a = 10
@@ -90,3 +92,5 @@ vector.something()
 # class PaymentProcessor:  # класс проводит оплату
 #     def checkout(self, product: Product, price: Price):  # сделать оплату
 #         pass
+
+
