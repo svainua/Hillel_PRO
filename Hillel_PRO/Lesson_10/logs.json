@@ -1,0 +1,22 @@
+{
+    "results": [
+        {
+            "currency_from": "USD",
+            "currency_to": "CHF",
+            "rate": 0.88547,
+            "timestamp": "14/02/2024 at 18:06:56"
+        },
+        {
+            "currency_from": "UAH",
+            "currency_to": "CHF",
+            "rate": 0.02315,
+            "timestamp": "14/02/2024 at 18:06:56"
+        },
+        {
+            "currency_from": "CHF",
+            "currency_to": "USD",
+            "rate": 1.129,
+            "timestamp": "14/02/2024 at 18:06:56"
+        }
+    ]
+}
