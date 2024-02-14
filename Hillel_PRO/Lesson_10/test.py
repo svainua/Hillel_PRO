@@ -3,7 +3,10 @@ import json
 
 results = {"results": []}
 
-def write_to_file(currency_from: str, currency_to: str, rate: str, date: str): #noqa
+
+def write_to_file(
+    currency_from: str, currency_to: str, rate: str, date: str
+):  # noqa
     content: dict = {
         "currency_from": currency_from,
         "currency_to": currency_to,
@@ -31,5 +34,3 @@ write_to_file(
 
 with open("logs.json", mode="a") as file:
     json.dump(results, file, indent=4)
-
-
