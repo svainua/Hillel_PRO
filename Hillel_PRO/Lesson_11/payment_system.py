@@ -71,9 +71,9 @@ def startup_check(payment_provider: str):
 
 def provider_dispatcher(name: str) -> PaymentProvider:
     if name == "stripe":
-        return StripePaymentProvider  #noqa
+        return StripePaymentProvider  # noqa
     elif name == "paypal":
-        return PayPalPaymentProvider  #noqa
+        return PayPalPaymentProvider  # noqa
     else:
         raise Exception(f"Provider {name} is not supported")
 
