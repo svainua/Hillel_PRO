@@ -14,7 +14,7 @@ class StripeAPI:
             return False
 
     @classmethod
-    def authorise(
+    def authorize(
         cls,
         token: str,
         user_email: str,
@@ -24,14 +24,14 @@ class StripeAPI:
     ) -> None:
         if token != "WEIFUHWEFUIHEWFIUWFEH":
             cls.authorization_state[user_email] = False
-            raise Exception("Stripe authorisation error")
+            raise Exception("Stripe authorization error")
         else:
             cls.authorization_state[user_email] = True
 
     @classmethod
     def checkout(cls, user_email: str, price: int) -> str:
         if cls.authorization_state.get(user_email, False) is False:
-            raise Exception("Stripe authorisation error")
+            raise Exception("Stripe authorization error")
         else:
             print(f"Checking out with Stripe for {price}$")
             payment_id = uuid.uuid4()
@@ -50,7 +50,7 @@ class PayPalAPI:
             return False
 
     @classmethod
-    def authorise(
+    def authorize(
         cls, username: str, email: str, password: str, card_data: dict
     ) -> None:
         if username == "hillel" and password == "hillel123":
@@ -62,7 +62,7 @@ class PayPalAPI:
     @classmethod
     def checkout(cls, email: str, price: int) -> str:
         if cls.authorization_state.get(email, False) is False:
-            raise Exception("PayPal authorisation error")
+            raise Exception("PayPal authorization error")
         else:
             print(f"Checking out with PayPal for {price}$")
             payment_id = uuid.uuid4()

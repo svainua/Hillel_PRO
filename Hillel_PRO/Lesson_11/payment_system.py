@@ -19,61 +19,66 @@ def catch_errors(func):
 
 
 class PaymentProvider(ABC):
+    def __init__(self, user: User) -> None:
+        self.user: User = user
 
     @abstractmethod
-    def authorize(self):
+    def authorize(self, **kwagrs):
         pass
 
     @abstractmethod
-    def checkout(self):
+    def checkout(self, product: Product):
         pass
 
     @abstractmethod
+    def healthcheck(self) -> None:
+        pass
+
+
+class StripePaymentProvider(PaymentProvider):
+    def authorize(self, **kwagrs):
+        token = kwagrs.get("token", "")
+        StripeAPI.authorize(
+            token=token,
+            user_email=self.user.email,
+            card_number=self.user.card.number,
+            expire_date=self.user.card.expire_date,
+            cvv=self.user.card.cvv,
+        )
+
+    def checkout(self, product: Product):
+        StripeAPI.checkout(user_email=self.user.email, price=product.price)
+
     def healthcheck(self):
-        pass
+        if StripeAPI.healthcheck() is False:
+            raise Exception("Stripe is NOT AVAILABLE")
 
 
-@catch_errors
-def checkout(user: User, product: Product, payment_provider: str):
-    if payment_provider == "stripe":
-        StripeAPI.authorise(
-            user_email=user.email,
-            token=STRIPE_ACCESS_TOKEN,
-            card_number=user.card.number,
-            expire_date=user.card.expire_date,
-            cvv=user.card.cvv,
+class PayPalPaymentProvider(PaymentProvider):
+
+    def authorize(self, **kwagrs):
+        username = kwagrs.get("username", "")
+        password = kwagrs.get("password", "")
+        PayPalAPI.authorize(
+            username=username,
+            password=password,
+            email=self.user.email,
+            card_data=asdict(self.user.card),
         )
 
-        StripeAPI.checkout(user_email=user.email, price=product.price)
+    def checkout(self, product: Product):
+        PayPalAPI.checkout(email=self.user.email, price=product.price)
 
-    elif payment_provider == "paypal":
-        PayPalAPI.authorise(
-            username=PAYPAL_CREDENTIALS["username"],
-            password=PAYPAL_CREDENTIALS["password"],
-            email=user.email,
-            card_data=asdict(user.card),
-        )
-
-        PayPalAPI.checkout(email=user.email, price=product.price)
+    def healthcheck(self):
+        if PayPalAPI.is_available() is False:
+            raise Exception("Stripe is NOT AVAILABLE")
 
 
-def startup_check(payment_provider: str):
-    if payment_provider == "stripe":
-        available: bool = StripeAPI.healthcheck()
-    elif payment_provider == "paypal":
-        available: bool = PayPalAPI.is_available()
-
-    if available is False:
-        print(f"Payment provider {payment_provider} is NOT AVAILABLE")
-    else:
-        print(f"Payment provider {payment_provider} is AVAILABLE")
-
-
-def provider_dispatcher(name: str) -> PaymentProvider:
+def provider_dispatcher(name: str, user: User) -> PaymentProvider:
     if name == "stripe":
-        return StripePaymentProvider  # noqa
+        return StripePaymentProvider(user=user)  # noqa
     elif name == "paypal":
-        return PayPalPaymentProvider  # noqa
+        return PayPalPaymentProvider(user=user)  # noqa
     else:
         raise Exception(f"Provider {name} is not supported")
 
@@ -95,11 +100,21 @@ def main():
     samsung = Product(name="Samsung", price=1000)
     iphone = Product(name="iPhone", price=2000)
 
-    startup_check(payment_provider="paypal")
-    startup_check(payment_provider="stripe")
+    stripe_credentials = {"token": STRIPE_ACCESS_TOKEN}
 
-    checkout(user=john, product=samsung, payment_provider="stripe")
-    checkout(user=marry, product=iphone, payment_provider="paypal")
+    payment_provider: PaymentProvider = provider_dispatcher(
+        name="stripe", user=john
+    )
+    payment_provider.healthcheck()
+    payment_provider.authorize(**stripe_credentials)
+    payment_provider.checkout(product=samsung)
+
+    payment_provider: PaymentProvider = provider_dispatcher(
+        name="paypal", user=marry
+    )
+    payment_provider.healthcheck()
+    payment_provider.authorize(**PAYPAL_CREDENTIALS)
+    payment_provider.checkout(product=iphone)
 
 
 if __name__ == "__main__":
