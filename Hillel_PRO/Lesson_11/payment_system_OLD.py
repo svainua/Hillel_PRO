@@ -20,7 +20,7 @@ def catch_errors(func):
 @catch_errors
 def checkout(user: User, product: Product, payment_provider: str):
     if payment_provider == "stripe":
-        StripeAPI.authorise(
+        StripeAPI.authorize(
             user_email=user.email,
             token=STRIPE_ACCESS_TOKEN,
             card_number=user.card.number,
@@ -31,7 +31,7 @@ def checkout(user: User, product: Product, payment_provider: str):
         StripeAPI.checkout(user_email=user.email, price=product.price)
 
     elif payment_provider == "paypal":
-        PayPalAPI.authorise(
+        PayPalAPI.authorize(
             username=PAYPAL_CREDENTIALS["username"],
             password=PAYPAL_CREDENTIALS["password"],
             email=user.email,
