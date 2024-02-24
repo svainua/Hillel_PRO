@@ -1,7 +1,7 @@
 import random
 import string
 import time
-from multiprocessing import Process
+from multiprocessing import Process  # noqa
 from threading import Thread
 
 
@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
 #     print(f"Total: {time.perf_counter() - start}")
 
-# =========================================================================================
+# ==========================================
 
 # Multiprocessing (CPU)
 
