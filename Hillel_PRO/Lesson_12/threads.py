@@ -81,7 +81,7 @@ if __name__ == "__main__":
 # def cpu_bound(n):
 #     items: list[str] = []
 #     for _ in range(n):
-#         word = "".join([random.choice(string.ascii_letters) for _ in range(3)])
+#         word = "".join([random.choice(string.ascii_letters) for _ in range(3)])   #noqa
 #         items.append(word)
 
 #     del items
@@ -123,5 +123,5 @@ if __name__ == "__main__":
 
 # CPU Bound - привязана к CPU
 
-# I/O Bound - привязана к вводу и выводу    ---> promt это input, когда ввожите информацию.
+# I/O Bound - привязана к вводу и выводу    ---> promt это input, когда ввожите информацию.  #noqa
 # ждем инпут - это называется I/O задача. аутпут - это когда выводим инфу.
