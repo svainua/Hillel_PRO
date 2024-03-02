@@ -1,9 +1,10 @@
-import requests
-from pprint import pprint as print
-from time import perf_counter
 import random
 import sys  # sys.argv возвращает список,в котором 1й элемент - это абсолютный путь к данному файлу # noqa
+from pprint import pprint as print
 from threading import Thread
+from time import perf_counter
+
+import requests
 
 # from multiprocessing import Queue
 
@@ -71,3 +72,8 @@ if __name__ == "__main__":
     main()
     finish = perf_counter() - start
     print(f"{finish=}")
+
+    # "code-runner.executorMap": {
+    #     "time": "gtime -v",
+    #     "python": "python3"
+    # }

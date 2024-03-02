@@ -1,7 +1,8 @@
 import asyncio
 import time
-import requests
+
 import aiohttp
+import requests
 
 
 async def blocking():
