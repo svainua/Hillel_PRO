@@ -4,6 +4,8 @@
 rockyou.txt
 venv
 __pycache__
+brew.zshrc
+cls
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
