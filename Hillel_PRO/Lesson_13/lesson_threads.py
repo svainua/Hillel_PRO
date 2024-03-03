@@ -73,7 +73,5 @@ if __name__ == "__main__":
     finish = perf_counter() - start
     print(f"{finish=}")
 
-    # "code-runner.executorMap": {
-    #     "time": "gtime -v",
-    #     "python": "python3"
-    # }
+
+# time python -m lesson sync 15 запуск в терминале. тайм прописан в алиасе
