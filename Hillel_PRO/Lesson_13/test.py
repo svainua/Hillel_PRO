@@ -1,25 +1,18 @@
 import asyncio
-import time
-
-import aiohttp
-import requests
 
 
-async def blocking():
-    response = requests.get("https://ukr.net")
-    print(response.status_code)
-
-
-async def async_http():
-    async with aiohttp.ClientSession() as session:
-        async with session.get("https://ukr.net") as response:
-            print(response.status)
+async def nested():
+    return 42
 
 
 async def main():
-    await asyncio.gather(*(async_http() for _ in range(5)))
+    # Schedule nested() to run soon concurrently
+    # with "main()".
+    task = asyncio.create_task(nested())
+
+    # "task" can now be used to cancel "nested()", or
+    # can simply be awaited to wait until it is complete:
+    await task
 
 
-start = time.perf_counter()
 asyncio.run(main())
-print(time.perf_counter() - start)

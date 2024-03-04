@@ -1,40 +1,25 @@
 import asyncio
 import time
 
-
-async def one():
-    print("Start 1")
-    await asyncio.sleep(1)
-    print("Stop 1")
+import aiohttp
+import requests
 
 
-async def two():
-    print("Start 2")
-    # await asyncio.sleep(2)
-    time.sleep(5)
-    print("Stop 2")
+async def blocking():
+    response = requests.get("https://ukr.net")
+    print(response.status_code)
 
 
-async def three():
-    print("Start 3")
-    await asyncio.sleep(3)
-    print("Stop 3")
-
-
-async def four():
-    print("Start 4")
-    await asyncio.sleep(4)
-    print("Stop 4")
+async def async_http():
+    async with aiohttp.ClientSession() as session:
+        async with session.get("https://ukr.net") as response:
+            print(response.status)
 
 
 async def main():
-    await asyncio.gather(one(), two(), three(), four())
-    # asyncio.create_task(one())
-    # asyncio.create_task(two())
-    # await asyncio.create_task(three())
+    await asyncio.gather(*(async_http() for _ in range(5)))
 
 
-if __name__ == "__main__":
-    start = time.perf_counter()
-    asyncio.run(main())
-    print(time.perf_counter() - start)
+start = time.perf_counter()
+asyncio.run(main())
+print(time.perf_counter() - start)
