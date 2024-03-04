@@ -21,14 +21,8 @@ async def three():
     print("Stop 3")
 
 
-async def four():
-    print("Start 4")
-    await asyncio.sleep(4)
-    print("Stop 4")
-
-
 async def main():
-    await asyncio.gather(one(), two(), three(), four())
+    await asyncio.gather(one(), two(), three())
     # asyncio.create_task(one())
     # asyncio.create_task(two())
     # await asyncio.create_task(three())
