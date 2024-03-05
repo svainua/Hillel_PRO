@@ -7,13 +7,13 @@ from time import perf_counter
 async def fun1(x):
     print(x**2)
     await asyncio.sleep(3)
-    print('fun1 завершена')
+    print("fun1 завершена")
 
 
 async def fun2(x):
     print(x**0.5)
     await asyncio.sleep(3)
-    print('fun2 завершена')
+    print("fun2 завершена")
 
 
 async def main():
