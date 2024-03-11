@@ -1,12 +1,17 @@
 import random
 import string
+from time import perf_counter
 from typing import Callable
 
 import httpx
-from fastapi import FastAPI
+from fastapi import Body, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+result = None
+last_button_push = 0
+last_post_call = 0
 
 
 app.add_middleware(
@@ -22,14 +27,26 @@ create_random_string: Callable[[int], str] = lambda size: "".join(  # noqa
 )  # noqa
 
 
-@app.get("/generate-article")
-async def get_information():
+@app.post("/generate-article")
+async def get_information(data=Body()):
+    global result
+    current_time = perf_counter()
+    if current_time - perf_counter() < 10 and result != None:  # noqa
+        return result
+    source = data["source"]
+    destination = data["destination"]
     """This endpoint returns the random information"""
 
-    return {
-        "title": create_random_string(size=10),
-        "description": create_random_string(size=20),
-    }
+    url = f"https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency={source}&to_currency={destination}&apikey=XSN17SDSA5RAM5W2"
+
+    async with httpx.AsyncClient() as client:
+        response: httpx.Response = await client.get(url)
+    rate: str = response.json()["Realtime Currency Exchange Rate"][
+        "5. Exchange Rate"
+    ]
+
+    result = f"The exchange rate for {source} and {destination} is {rate}."
+    return result
 
 
 @app.get("/fetch-market")
