@@ -1,0 +1,43 @@
+{
+    "results": [
+        {
+            "currency_from": "USD",
+            "currency_to": "CHF",
+            "rate": 0.8843,
+            "timestamp": "18/03/2024 at 14:14:30"
+        },
+        {
+            "currency_from": "UAH",
+            "currency_to": "CHF",
+            "rate": 0.02274,
+            "timestamp": "18/03/2024 at 14:14:30"
+        },
+        {
+            "currency_from": "CHF",
+            "currency_to": "USD",
+            "rate": 1.1308,
+            "timestamp": "18/03/2024 at 14:14:30"
+        }
+    ]
+}{
+    "results": [
+        {
+            "currency_from": "USD",
+            "currency_to": "CHF",
+            "rate": 0.8843,
+            "timestamp": "18/03/2024 at 14:16:38"
+        },
+        {
+            "currency_from": "UAH",
+            "currency_to": "CHF",
+            "rate": 0.02274,
+            "timestamp": "18/03/2024 at 14:16:38"
+        },
+        {
+            "currency_from": "CHF",
+            "currency_to": "USD",
+            "rate": 1.1308,
+            "timestamp": "18/03/2024 at 14:16:38"
+        }
+    ]
+}
