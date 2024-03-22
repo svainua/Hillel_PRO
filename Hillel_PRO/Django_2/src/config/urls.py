@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.urls import path
-
 from issues.api import (
     create_poderevyanski_issue,
     create_random_issue,

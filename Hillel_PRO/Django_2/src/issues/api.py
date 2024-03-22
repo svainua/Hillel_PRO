@@ -5,7 +5,6 @@ import string
 
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render  # noqa
-
 from issues.models import Issue
 
 # Create your views here.
