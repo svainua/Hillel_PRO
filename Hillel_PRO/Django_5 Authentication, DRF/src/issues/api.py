@@ -7,11 +7,10 @@ from django.http import Http404  # noqa
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render  # noqa
 from django.shortcuts import get_object_or_404
+from issues.models import Issue
 from rest_framework import serializers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
-from issues.models import Issue
 
 
 class IssueSerializer(serializers.ModelSerializer):
