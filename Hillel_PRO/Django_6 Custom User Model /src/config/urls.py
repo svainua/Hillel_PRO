@@ -1,8 +1,5 @@
 from django.contrib import admin
 from django.urls import path
-from rest_framework_simplejwt.views import TokenObtainPairView  # noqa
-from rest_framework_simplejwt.views import token_obtain_pair
-
 from issues.api import (
     create_issue,
     create_poderevyanski_issue,
@@ -12,6 +9,8 @@ from issues.api import (
     post_issue,
     retreive_issue,
 )
+from rest_framework_simplejwt.views import TokenObtainPairView  # noqa
+from rest_framework_simplejwt.views import token_obtain_pair
 from users.api import create_user
 
 urlpatterns = [
