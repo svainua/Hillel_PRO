@@ -2,7 +2,6 @@ from django.db.models import Q
 from rest_framework import generics, permissions, response, serializers  # noqa
 from rest_framework.decorators import api_view, permission_classes  # noqa
 from rest_framework.request import Request
-
 from users.enums import Role
 
 from .enums import Status
